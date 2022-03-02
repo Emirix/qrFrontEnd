@@ -19,7 +19,8 @@ function Urun() {
     function yorumGonder(){
         if(userYorum != ""){
             axios.post("/restoran/yorumlar/"+id,{
-                yorum:userYorum
+                yorum:userYorum,
+                slug:id
             }).then(res=>{
                 if(res.status == 201) { 
                     setSnack(true); 
@@ -58,22 +59,9 @@ function Urun() {
       <div className='kutu w-90 mx-auto mt-3 p-2'>
             <div className="d-flex align-items-center justify-content-between">
                 <div className="fs-5 text-mavi">Yorumlar</div>
-                <button onClick={()=>setYorumMode(!yorumMode)} className="button button-mavi">
-                   
-                    {!yorumMode ? <> <i className="gg-math-plus"></i>
-                    Yaz</> : <><i className="gg-close"></i> İptal</>}
-                </button>
+              
             </div>
 
-            {yorumMode ? 
-            <div className="yorum-yaz nav-inx">
-                <textarea onChange={e => {
-                    setUserYorum(e.target.value)
-                }} id="" cols="30" rows="3" className='mt-3' placeholder='Yorumunuzu giriniz'>
-                {userYorum}
-                </textarea>
-                <button className="button button-mavi ms-auto" onClick={()=>yorumGonder()}>Gönder</button>
-            </div> : "" }
             {yorumlar && yorumlar.length == 0 ? <div className='text-center my-2'>Henüz bir yorum yazılmamış.</div> : ""}
             {yorumlar && yorumlar.map(val=>{
                 return(

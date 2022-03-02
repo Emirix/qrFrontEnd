@@ -23,7 +23,7 @@ function Index({slug}) {
                 </div>
 
                  {data == null ? <div className="skeleton-box"></div> : 
-                   <p className='tanitim text-center '>
+                   <p translate="no" className='tanitim text-center '>
                       { data && data[0].aciklama}
                   </p>
 }
@@ -31,10 +31,10 @@ function Index({slug}) {
                
 
             <Link to={`/kategoriler/${slug}`}>
-            <button className='button button-mavi mb-3 mt-3'><i className="gg-eye"></i>Tüm Ürünler</button>
+            <button translate="no" className='button button-mavi mb-3 mt-3'><i className="gg-eye"></i>Ürünlerimiz</button>
             </Link>
-            <button className='button button-dark mb-3 '>            <i className="gg-bitbucket"></i>
-Kampanyalılar!</button>
+            <button translate="no" className='button button-dark mb-3 '>            <i className="gg-bitbucket"></i>
+En Çok Satılanlar</button>
                <div className="mb-3 masa-show d-flex align-items-center"><h6 className='fw-bold mb-0 me-1'>Masa No: </h6> <span>{localStorage.getItem("masa_no")}</span></div>
         </div>
     )

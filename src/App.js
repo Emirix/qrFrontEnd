@@ -20,6 +20,7 @@ import Odeme from "./pages/Odeme";
 import Yorumlar from "./pages/Yorumlar";
 import axios from "axios";
 import Urun from "./pages/Urun";
+import Landing from "./Landing/Index";
 import Start from "./pages/Start";
 import SocketIOClient from "socket.io-client";
 
@@ -43,6 +44,7 @@ function App() {
       console.log(res.data);
       setAyar(res.data);
     });
+
   }, []);
 
   return (
@@ -67,9 +69,11 @@ function App() {
       <div>
         {ayar != null ? (
           <Switch>
+
+
             <Route path="/ana-sayfa/:restoran/" exact>
               <Page>
-                <Index slug={slug} />
+                <Index/>
               </Page>
             </Route>
 
@@ -78,14 +82,14 @@ function App() {
                 <Urun
                   siparis={ayar != null && ayar[0].siparis_ayar}
                   yorum={ayar && ayar[0].ayar_yorum}
-                  context={(e) => {
+                  context={e => {
                     setBasket((oldArray) => [...oldArray, e]);
                   }}
                 />
               </Page>
             </Route>
 
-            <Route path="/yorum/:id" exact>
+            <Route path="/yorum/:restoran/:id" exact>
               <Page>
                 <Yorumlar />
               </Page>
@@ -147,7 +151,7 @@ function App() {
         ) : (
           ""
         )}
-        {ayar && ayar[0].istek_ayar == "true" ? (
+        { ayar && ayar[0].istek_ayar == "true" ? (
           <ul className="yanmenu">
             <li className={""}>
               <Link to={`/istek/${slug}`}>
@@ -159,7 +163,7 @@ function App() {
         ) : (
           ""
         )}
-        {ayar != null ? <Nav siparis={ayar && ayar[0].siparis_ayar} /> : ""}
+        { ayar != null ? <Nav siparis={ayar && ayar[0].siparis_ayar} /> : ""}
       </div>
     </Router>
   );

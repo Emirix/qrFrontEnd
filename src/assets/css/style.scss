@@ -637,14 +637,14 @@ textarea{
     position: fixed;
     right: 0;
     top: 50%;
-    transform: translate(0,-50%);
+    transform: translate(0,70%);
     margin: 0;
     padding: 0;
    z-index: 100000;
     li{
         box-shadow: -3px 11px 43px -9px rgba(0,0,0,0.7);
         list-style: none;
-        background-color: $mavi;
+        background-color: #3AC76A;
         border-top-left-radius: 8px;
         border-bottom-left-radius: 8px;
         transition: .2s;

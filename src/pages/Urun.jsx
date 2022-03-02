@@ -29,7 +29,8 @@ function Urun({ context,yorum,siparis }) {
       axios
         .post("/restoran/yorumlar/" + id, {
           yorum: userYorum,
-          yildiz: star
+          yildiz: star,
+          slug: restoran
         })
         .then((res) => {
           if (res.status == 201) {
@@ -94,6 +95,8 @@ function Urun({ context,yorum,siparis }) {
 
             {siparis == "true" ? 
         <div className="d-flex justify-content-between align-items-center">
+         {urunler ? <>
+         
           <div className="d-flex">
             <div className="counter d-flex">
               <button
@@ -155,6 +158,10 @@ function Urun({ context,yorum,siparis }) {
           >
             Ekle
           </button>
+          </> : <div className="d-flex justify-content-between">
+          <div className="skeleton-box w-25 "></div>
+          <div className="skeleton-box w-25 "></div>
+          </div> }
           <div className="conneection">
            
           </div>
@@ -172,7 +179,7 @@ function Urun({ context,yorum,siparis }) {
 
           <div className="mb-3 ">
             <h6 className="mb-0">Malzemeler</h6>
-            <p className="subtitle text-secondary fs-7 mb-1">Çıkarmak istediğiniz malzemeleri seçiniz</p>
+            <p translate="no" className="subtitle text-secondary fs-7 mb-1">Çıkarmak istediğiniz malzemeleri seçiniz</p>
             <div className="d-flex option-scroll">
               {
                 urunler && urunler.malzemeler.split(",").map((val,i)=>{
@@ -195,7 +202,8 @@ function Urun({ context,yorum,siparis }) {
 
 
         </div>
-        {siparis == "true" ? 
+        {siparis == "true" ?
+       
         <div className="mt-1">
           <textarea
             placeholder="Sipariş ile ilgili notlarınız yazabilirsiniz"
@@ -282,7 +290,7 @@ function Urun({ context,yorum,siparis }) {
           })}
 
         <Link
-          to={"/yorum/" + id}
+          to={"/yorum/" + restoran + "/" + id}
           className="text-center d-flex justify-content-center outline-button mx-auto mt-2"
         >
           Tümünü Göster
